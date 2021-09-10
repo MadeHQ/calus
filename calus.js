@@ -139,14 +139,11 @@ export default function calus(options) {
                 let months = [];
                 let date = null;
 
-                if (this.displayInColumn) {
+                if (this.linearDates) {
                     date = this.firstAvailable < this.now ? this.firstAvailable : this.now
                 } else {
                     date = this.currentDisplayedMonth
                 }
-
-                let startOfCurrentlyDisplayed = this.availableDates.findIndex(x => x > date);
-                let available = this.availableDates.slice(this.displayInColumn ? 0 : startOfCurrentlyDisplayed);
                 let end = (this.displayInColumn ? this.endDate : this.currentDisplayedMonth);
 
                 let startOfToday = this.now.startOf('day');
@@ -165,6 +162,9 @@ export default function calus(options) {
                     }
 
                     for (let day = monthStart; day <= monthEnd; day = day.plus({ days: 1 })) {
+                        let startOfCurrentlyDisplayed = this.availableDates.findIndex(x => x > date);
+                        let available = this.availableDates.slice(this.displayInColumn ? 0 : startOfCurrentlyDisplayed);
+
                         while(available.length && day > available[0]) {
                             available.shift()
                         }
@@ -253,4 +253,3 @@ export default function calus(options) {
         }
     })
 }
-
