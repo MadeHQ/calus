@@ -116,7 +116,7 @@ export default function calus(options) {
                         monthEnd = date.endOf('month')
                     } else {
                         monthStart = date.startOf('month').startOf('week').plus({ days: this.weekStartOffset })
-                        monthEnd = date.endOf('month').endOf('week').plus({ days: this.weekStartOffset })
+                        monthEnd = date.endOf('month').endOf('week');
                     }
 
                     for (let day = monthStart; day <= monthEnd; day = day.plus({ days: 1 })) {
