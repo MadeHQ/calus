@@ -69,6 +69,10 @@ export default function calus(options) {
             // which month is currently shown on screen (only used when
             // `displayInColumn` is false)
             currentDisplayedMonth: DateTime.local().startOf('month'),
+
+            // start on first available month
+            displayFirstAvailableMonth: options.displayFirstAvailableMonth || false,
+
             // force the day to start on sunday instead of default monday
             weekStartsOnSunday: options.weekStartsOnSunday || false,
 
@@ -93,6 +97,8 @@ export default function calus(options) {
 
                 if (this.displayInColumn) {
                     date = this.firstAvailable < this.now ? this.firstAvailable : this.now
+                } else if (this.displayFirstAvailableMonth) {
+                    date = this.firstAvailable.startOf('month')
                 } else {
                     date = this.currentDisplayedMonth
                 }
@@ -100,7 +106,16 @@ export default function calus(options) {
                 let startOfCurrentlyDisplayed = this.availableDates.findIndex(x => x > date)
                 let available = this.availableDates.slice(this.displayInColumn ? 0 : startOfCurrentlyDisplayed)
 
-                let end = (this.displayInColumn ? this.lastAvailable : this.currentDisplayedMonth).endOf('month')
+                let end = this.currentDisplayedMonth;
+
+                if (this.displayInColumn) {
+                    end = this.lastAvailable
+                } else if (this.displayFirstAvailableMonth) {
+                    end = this.firstAvailable.startOf('month')
+                }
+
+                end = end.endOf('month')
+
                 let startOfToday = this.now.startOf('day')
                 let availableDatesIndex = 0
 
