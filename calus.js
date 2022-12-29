@@ -231,10 +231,12 @@ export default function calus(options) {
             },
             scrollMonth: function (delta) {
                 if (!this.displayInColumn) {
-                    this.removeSelectedStyle()
-                    this.currentDisplayedMonth = this.currentDisplayedMonth.plus({ months: delta })
+                    this.removeSelectedStyle();
+                    const previousMonth = this.currentDisplayedMonth;
+                    this.currentDisplayedMonth = this.currentDisplayedMonth.plus({ months: delta });
+                    this.onChangeMonth(previousMonth, this.currentDisplayedMonth);
                     setTimeout(() => {
-                        this.addSelectedStyle(this.selected)
+                        this.addSelectedStyle(this.selected);
                     }, 1)
                 }
             }
