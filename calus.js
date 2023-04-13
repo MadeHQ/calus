@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import { DateTime } from 'luxon'
+import translations from './data/translations.json'
 
 let defaultTemplate = `
 <div
@@ -22,7 +23,7 @@ let defaultTemplate = `
                 ‹
             </button>
             <div class="month__text">
-                {{ month.time.toFormat(month.isInCurrentYear ? 'MMMM' : 'MMMM y') }}
+                {{ translate('month_' + month.time.toFormat('MMMM'), 'cy') }} {{ month.time.toFormat(month.isInCurrentYear ? '' : 'y') }}
             </div>
             <button
                 type="button"
@@ -72,6 +73,8 @@ export default function calus(options) {
     }
 
     let timezone = options.timezone || 'utc';
+
+    const defaultLang = 'en';
 
     return new Vue({
         el: el,
@@ -249,6 +252,17 @@ export default function calus(options) {
                         this.addSelectedStyle(this.selected)
                     }, 1)
                 }
+            },
+            translate: function (key, lang) {
+                if (!translations[key]) {
+                    return false;
+                }
+
+                if (!translations[key][lang]) {
+                    return translations[key][defaultLang];
+                }
+
+                return translations[key][lang];
             }
         }
     })
