@@ -74,6 +74,8 @@ export default function calus(options) {
 
     let timezone = options.timezone || 'utc';
 
+    const defaultLang = 'en';
+
     return new Vue({
         el: el,
         data: {
@@ -254,6 +256,10 @@ export default function calus(options) {
             translate: function (key, lang) {
                 if (!translations[key]) {
                     return false;
+                }
+
+                if (!translations[key][lang]) {
+                    return translations[key][defaultLang];
                 }
 
                 return translations[key][lang];
