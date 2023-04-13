@@ -1,0 +1,78 @@
+{
+  "month_January": {
+    "en": "January",
+    "cy": "Ionawr"
+  },
+  "month_February": {
+    "en": "February",
+    "cy": "Chwefror"
+  },
+  "month_March": {
+    "en": "March",
+    "cy": "Mawrth"
+  },
+  "month_April": {
+    "en": "April",
+    "cy": "Ebrill"
+  },
+  "month_May": {
+    "en": "May",
+    "cy": "Mai"
+  },
+  "month_June": {
+    "en": "June",
+    "cy": "Mehefin"
+  },
+  "month_July": {
+    "en": "July",
+    "cy": "Gorffennaf"
+  },
+  "month_August": {
+    "en": "August",
+    "cy": "Awst"
+  },
+  "month_September": {
+    "en": "September",
+    "cy": "Medi"
+  },
+  "month_October": {
+    "en": "October",
+    "cy": "Hydref"
+  },
+  "month_November": {
+    "en": "November",
+    "cy": "Tachwedd"
+  },
+  "month_December": {
+    "en": "December",
+    "cy": "Rhagfyr"
+  },
+  "day_monday": {
+    "en": "Ll",
+    "cy": "Ll"
+  },
+  "day_tuesday": {
+    "en": "T",
+    "cy": "M"
+  },
+  "day_wednesday": {
+    "en": "W",
+    "cy": "M"
+  },
+  "day_thursday": {
+    "en": "T",
+    "cy": "I"
+  },
+  "day_friday": {
+    "en": "F",
+    "cy": "G"
+  },
+  "day_saturday": {
+    "en": "S",
+    "cy": "S"
+  },
+  "day_sunday": {
+    "en": "S",
+    "cy": "S"
+  }
+}
