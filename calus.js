@@ -23,7 +23,7 @@ let defaultTemplate = `
                 ‹
             </button>
             <div class="month__text">
-                {{ translate('month_' + month.time.toFormat('MMMM'), 'cy') }} {{ month.time.toFormat(month.isInCurrentYear ? '' : 'y') }}
+                {{ translate('month_' + month.time.toFormat('MMMM')) }} {{ month.time.toFormat(month.isInCurrentYear ? '' : 'y') }}
             </div>
             <button
                 type="button"
@@ -117,6 +117,8 @@ export default function calus(options) {
 
             // Sets when the calendar should end (defaults to the last "available" date)
             end: options.end,
+
+            lang: 'en',
         },
         computed: {
             now: () => DateTime.local().setZone(timezone, { keepLocalTime: true }),
@@ -253,7 +255,9 @@ export default function calus(options) {
                     }, 1)
                 }
             },
-            translate: function (key, lang) {
+            translate: function (key) {
+                let lang = (this.$el.dataset) ? this.$el.dataset.lang : undefined;
+
                 if (!translations[key]) {
                     return false;
                 }
