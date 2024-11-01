@@ -50,6 +50,8 @@ export default function calus(options) {
         docEl.innerHTML = defaultTemplate
     }
 
+    let timezone = options.timezone || 'America/Los_Angeles'
+
     return new Vue({
         el: el,
         data: {
@@ -68,7 +70,7 @@ export default function calus(options) {
 
             // which month is currently shown on screen (only used when
             // `displayInColumn` is false)
-            currentDisplayedMonth: DateTime.local().startOf('month'),
+            currentDisplayedMonth: DateTime.local().setZone(timezone, { keepLocalTime: false }).startOf('month'),
 
             // start on first available month
             respectAvailableDates: options.respectAvailableDates || false,
@@ -82,7 +84,7 @@ export default function calus(options) {
             onChangeMonth: options.onChangeMonth || function(prev, current) { },
         },
         computed: {
-            now: () => DateTime.local(),
+            now: () => DateTime.local().setZone(timezone, { keepLocalTime: false }),
             firstAvailable: function () {
                 return this.availableDates.length ? this.availableDates[0] : this.now
             },
@@ -196,7 +198,7 @@ export default function calus(options) {
 
                     try {
                         ISODates = array.map((x) => {
-                            let isoDate =  DateTime.fromISO(x)
+                            let isoDate =  DateTime.fromISO(x).setZone(timezone, { keepLocalTime: false })
                             if (isoDate.isValid) {
                                 return isoDate
                             } else {
